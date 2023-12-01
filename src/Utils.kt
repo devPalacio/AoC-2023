@@ -6,19 +6,25 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 import java.security.MessageDigest
-import java.util.*
+import java.util.Properties
 import kotlin.io.path.Path
 import kotlin.io.path.readLines
 
 private val SESSION = getSessionKey()
 const val YEAR = 2023
+
 /**
  * Reads lines from the given input txt file.
  */
 fun readInput(name: String) = Path("src/$name.txt").readLines()
 
-fun fetchInput(day : Int): List<String> {
+fun fetchInput(day: Int): List<String> {
     val formattedDay = String.format("%02d", day)
+
+    if (Files.exists(Paths.get("src/Day$day.txt"))) {
+        return readInput("Day$formattedDay")
+    }
+
     val url = URL("https://adventofcode.com/$YEAR/day/$day/input")
     val connection = url.openConnection() as HttpURLConnection
     connection.setRequestProperty("Cookie", "session=$SESSION")
@@ -27,12 +33,14 @@ fun fetchInput(day : Int): List<String> {
     }
     return readInput("Day$formattedDay")
 }
+
 /**
  * Converts string to md5 hash.
  */
-fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray()))
-    .toString(16)
-    .padStart(32, '0')
+fun String.md5() =
+    BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray()))
+        .toString(16)
+        .padStart(32, '0')
 
 /**
  * The cleaner shorthand for printing output.
@@ -44,8 +52,8 @@ private fun loadProperties(): Properties {
 
     FileInputStream("gradle.properties")
         .use { fileInput ->
-        properties.load(fileInput)
-    }
+            properties.load(fileInput)
+        }
     return properties
 }
 
