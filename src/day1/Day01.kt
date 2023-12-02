@@ -1,3 +1,7 @@
+package day1
+
+import fetchInput
+import println
 import java.lang.Character.isDigit
 
 fun main() {
@@ -6,13 +10,13 @@ fun main() {
     part2(input).println()
 }
 
-fun part1(input: List<String>): Int {
+private fun part1(input: List<String>): Int {
     return input.sumOf {
         "${getFirstDigit(it)}${getLastDigit(it)}".toInt()
     }
 }
 
-fun part2(input: List<String>): Int {
+internal fun part2(input: List<String>): Int {
     return input.map(::transformToDigits).sumOf {
         "${getFirstDigit(it)}${getLastDigit(it)}".toInt()
     }
