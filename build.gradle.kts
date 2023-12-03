@@ -1,14 +1,23 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     kotlin("jvm") version "1.9.21"
     id("com.diffplug.spotless") version "6.23.2"
 }
 dependencies {
-    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 }
 
-sourceSets {
-    main {
-        kotlin.srcDir("src")
+tasks.test {
+    useJUnitPlatform()
+
+    testLogging {
+        showStandardStreams = true
+        events = setOf(
+            TestLogEvent.PASSED,
+            TestLogEvent.FAILED,
+            TestLogEvent.STANDARD_OUT
+        )
     }
 }
 

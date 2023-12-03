@@ -19,7 +19,7 @@ class Day01Test {
     }
 
     @Test
-    fun `"eighthree" is 83`() {
+    fun `eighthree is 83`() {
         val input = "eighthree"
         val result = transformToDigits(input)
         assertEquals("83", result)

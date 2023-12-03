@@ -39,7 +39,6 @@ class Day03Test {
         val given = Pair(5, 0)
         val givenMap = sampleInput.extractDigitsAsMap()
         val expected = false
-        println(sampleInput[1])
         val result = given.neighborIsSymbol(sampleInput, givenMap)
         assertEquals(expected, result)
     }
