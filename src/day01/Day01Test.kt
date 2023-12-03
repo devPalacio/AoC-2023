@@ -1,9 +1,9 @@
-package day1
+package day01
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class Day01KtTest {
+class Day01Test {
     @Test
     fun `getFirstDigit should return the first digit of a string`() {
         val input = "abc123xyz"

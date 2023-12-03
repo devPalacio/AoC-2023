@@ -3,7 +3,7 @@ package day02
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class Day02KtTest {
+class Day02Test {
     private val expectedGame =
         listOf(
             Game(id = 1, red = 1, green = 10, blue = 5),
