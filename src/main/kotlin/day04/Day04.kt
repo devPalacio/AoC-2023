@@ -3,11 +3,17 @@ package day04
 import fetchInput
 import println
 import kotlin.math.pow
+import kotlin.system.measureTimeMillis
 
 fun main() {
     val input = fetchInput(4)
     part1(input).println()
-    part2(input).println()
+    val executionTime = measureTimeMillis {
+        val result = part2(input)
+        result.println()
+    }
+    println("Execution time: $executionTime ms")
+//    part2(input).println()
 }
 
 fun part1(input: List<String>): Int {
@@ -23,8 +29,8 @@ fun part2(input: List<String>): Int {
         .forEach { card ->
             // iterate for number of cards we have
             val cardIndex = card.first - 1
+            val matches = card.numOfMatches()
             for (i in 1..cardTracker[cardIndex]) {
-                val matches = card.numOfMatches()
                 for (j in 1..matches) {
                     cardTracker[cardIndex + j] += 1
                 }
